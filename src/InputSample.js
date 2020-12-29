@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
 
 function InputSample() {
-    const [text, setText] = useState('');
+    const [inputs, setInputs] = useState({
+        name: '',
+        nickname: '',
+    });
 
     const onChange = (e) => {
-        setText(e.target.value);
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value
+        })
     }
 
     const onReset = () => {
-        setText('');
+        setInputs({
+            name: '',
+            nickname: ''
+        });
     }
+
     return (
         <div>
-            <input onChange={onChange} value={text} />
+            <input name="name" placeholder="이름" onChange={onChange} value={inputs.name} />
+            <input name="nickname" placeholder="닉네임" onChange={onChange} value={inputs.nickname} />
             <button onClick={onReset}>초기화</button>
             <div>
                 <b>값: </b>
-                {text}
+                {inputs.name} ({inputs.nickname})
             </div>
         </div>
     )
