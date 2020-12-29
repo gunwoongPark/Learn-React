@@ -19,17 +19,20 @@ function App() {
     {
       id: 1,
       username: "박건웅",
-      email: "bung1438@gmail.com"
+      email: "bung1438@gmail.com",
+      active: true
     },
     {
       id: 2,
       username: 'tester',
-      email: "tester@example.com"
+      email: "tester@example.com",
+      active: false
     },
     {
       id: 3,
       username: 'liz',
-      email: "liz@example.com"
+      email: "liz@example.com",
+      active: false
     }
   ]);
 
@@ -44,9 +47,6 @@ function App() {
       email: inputs.email,
     };
 
-    // 방법 1 : 스프레드 문법 사용
-    // setUsers([...users, user]);
-    // 방법 2 : 자바스크립트 배열 내장함수 concat 사용
     setUsers(users.concat(user));
 
     setInputs({
@@ -61,10 +61,14 @@ function App() {
     setUsers(users.filter(user => user.id !== id));
   };
 
+  const onToggle = id => {
+    setUsers(users.map(user => user.id === id ? { ...user, active: !user.active } : user))
+  }
+
   return (
     <>
       <CreateUser username={inputs.username} email={inputs.email} onChange={onChange} onCreate={onCreate} />
-      <UserList users={users} onRemove={onRemove} />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     </>
   );
 }
