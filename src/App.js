@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useCallback } from 'react';
 import CreateUser from './CreateUser';
 import UserList from "./UserList";
 
@@ -13,12 +13,13 @@ function App() {
     email: ''
   });
 
-  const onChange = e => {
+  // inputs구조 자체가 변경될 때만 리 렌더링 된다!
+  const onChange = useCallback(e => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
-  }
+  }, [inputs]);
 
   const [users, setUsers] = useState([
     {
@@ -43,7 +44,7 @@ function App() {
 
   const nextId = useRef(4);
 
-  const onCreate = () => {
+  const onCreate = useCallback(() => {
     const user = {
       id: nextId.current,
       username: inputs.username,
@@ -57,15 +58,15 @@ function App() {
       email: ''
     })
     nextId.current += 1;
-  };
+  }, [inputs.username, inputs.email, users]);
 
-  const onRemove = id => {
+  const onRemove = useCallback(id => {
     setUsers(users.filter(user => user.id !== id));
-  };
+  }, [users]);
 
-  const onToggle = id => {
+  const onToggle = useCallback(id => {
     setUsers(users.map(user => user.id === id ? { ...user, active: !user.active } : user))
-  }
+  }, [users]);
 
   // 컴포넌트 성능 최적화를 위함
   const count = useMemo(() => countActiveUsers(users), [users]);
