@@ -51,22 +51,22 @@ function App() {
       email: inputs.email,
     };
 
-    setUsers(users.concat(user));
+    setUsers(users => users.concat(user));
 
     setInputs({
       username: '',
       email: ''
     })
     nextId.current += 1;
-  }, [inputs.username, inputs.email, users]);
+  }, [inputs.username, inputs.email]);
 
   const onRemove = useCallback(id => {
-    setUsers(users.filter(user => user.id !== id));
-  }, [users]);
+    setUsers(users => users.filter(user => user.id !== id));
+  }, []);
 
   const onToggle = useCallback(id => {
-    setUsers(users.map(user => user.id === id ? { ...user, active: !user.active } : user))
-  }, [users]);
+    setUsers(users => users.map(user => user.id === id ? { ...user, active: !user.active } : user))
+  }, []);
 
   // 컴포넌트 성능 최적화를 위함
   const count = useMemo(() => countActiveUsers(users), [users]);
