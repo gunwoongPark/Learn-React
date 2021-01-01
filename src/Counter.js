@@ -1,15 +1,31 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
+
+// useReducer 사용 시 상태 업데이트 로직이 컴포넌트 밖에 있어서
+// 코드가 더 간결하고 보기 쉬워짐
+function reducer(state, action) {
+    switch (action.type) {
+        case 'INCREMENT':
+            return state + 1;
+        case 'DECREMENT':
+            return state - 1;
+        default:
+            throw new Error('Unhandled action');
+    }
+}
 
 function Counter() {
-    const [number, setNumber] = useState(0);
+
+    const [number, dispatch] = useReducer(reducer, 0);
 
     const onIncrease = () => {
-        // 함수형 업데이트를 통해 상태를 업데이트
-        setNumber(prevNumber => prevNumber + 1);
+        dispatch({
+            type: 'INCREMENT'
+        })
     }
     const onDecrease = () => {
-        // 값 자체를 대입
-        setNumber(number - 1);
+        dispatch({
+            type: 'DECREMENT'
+        })
     }
     return (
         <div>
