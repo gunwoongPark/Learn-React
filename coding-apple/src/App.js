@@ -11,13 +11,10 @@ function App() {
   ]);
 
   let [따봉, 따봉변경] = useState(0);
-  let posts = "강남 고기 맛집";
 
-  // function 제목바꾸기() {
-  //   var newArray = [...글제목];
-  //   newArray[0] = "여자 코트 추천";
-  //   글제목변경(newArray);
-  // }
+  let [modal, modal변경] = useState(false);
+
+  let posts = "강남 고기 맛집";
 
   return (
     <div className="App">
@@ -48,7 +45,15 @@ function App() {
         <hr />
       </div>
 
-      <Modal></Modal>
+      <button
+        onClick={() => {
+          modal변경(!modal);
+        }}
+      >
+        버튼
+      </button>
+
+      {modal ? <Modal /> : null}
     </div>
   );
 }
