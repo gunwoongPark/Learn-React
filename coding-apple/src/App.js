@@ -4,12 +4,13 @@ import "./App.css";
 import React, { useState } from "react";
 
 function App() {
-  // 자주 바뀌는 중요한 데이터는 state 사용
-  // 웹앱처럼 새로고침이 최소화 하기위해
-  let [글제목1, 글제목변경1] = useState("남자 코트 추천1");
-  let [글제목2, 글제목변경2] = useState("남자 코트 추천2");
-  let [글제목3, 글제목변경3] = useState("남자 코트 추천3");
+  let [글제목, 글제목변경] = useState([
+    "남자 코트 추천",
+    "강남 우동 맛집",
+    "파이썬 독학",
+  ]);
 
+  let [따봉, 따봉변경] = useState(0);
   let posts = "강남 고기 맛집";
 
   return (
@@ -17,16 +18,33 @@ function App() {
       <div className="black-nav">
         <div>개발 Blog</div>
       </div>
+      <button
+        onClick={() => {
+          글제목변경(["여자 코트 추천", "강남 우동 맛집", "파이썬 독학"]);
+        }}
+      >
+        버튼
+      </button>
       <div className="list">
-        <h3>{글제목1}</h3>
+        <h3>
+          {글제목[0]}
+          <span
+            onClick={() => {
+              따봉변경(따봉 + 1);
+            }}
+          >
+            👍
+          </span>
+          {따봉}
+        </h3>
         <p>2월 17일 발행</p>
         <hr />
 
-        <h3>{글제목2}</h3>
+        <h3>{글제목[1]}</h3>
         <p>2월 17일 발행</p>
         <hr />
 
-        <h3>{글제목3}</h3>
+        <h3>{글제목[2]}</h3>
         <p>2월 17일 발행</p>
         <hr />
       </div>
