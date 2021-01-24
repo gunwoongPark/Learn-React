@@ -45,16 +45,24 @@ function App() {
         );
       })}
 
-      {modal ? <Modal /> : null}
+      <button
+        onClick={() => {
+          modal변경(!modal);
+        }}
+      >
+        열고닫기
+      </button>
+
+      {modal ? <Modal 글제목={글제목} /> : null}
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
     <>
       <div className="modal">
-        <h2>제목</h2>
+        <h2>{props.글제목[1].글}</h2>
         <p>날짜</p>
         <p>상세내용</p>
       </div>
