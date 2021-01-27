@@ -16,6 +16,8 @@ function App() {
 
   let [누른제목, 누른제목변경] = useState(0);
 
+  let [입력값, 입력값변경] = useState("");
+
   return (
     <div className="App">
       <div className="black-nav">
