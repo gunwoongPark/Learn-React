@@ -14,6 +14,8 @@ function App() {
 
   let [modal, modal변경] = useState(false);
 
+  let [누른제목, 누른제목변경] = useState(0);
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -23,7 +25,11 @@ function App() {
       {글제목.map((글, index) => {
         return (
           <div className="list" key={index}>
-            <h3>
+            <h3
+              onClick={() => {
+                누른제목변경(index);
+              }}
+            >
               {글.글}
               <span
                 onClick={() => {
@@ -53,7 +59,7 @@ function App() {
         열고닫기
       </button>
 
-      {modal ? <Modal 글제목={글제목} /> : null}
+      {modal ? <Modal 글제목={글제목} 누른제목={누른제목} /> : null}
     </div>
   );
 }
@@ -62,7 +68,7 @@ function Modal(props) {
   return (
     <>
       <div className="modal">
-        <h2>{props.글제목[1].글}</h2>
+        <h2>{props.글제목[props.누른제목].글}</h2>
         <p>날짜</p>
         <p>상세내용</p>
       </div>
