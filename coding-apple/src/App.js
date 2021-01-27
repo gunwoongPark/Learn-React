@@ -53,6 +53,24 @@ function App() {
         );
       })}
 
+      <div className="publish">
+        <input
+          value={입력값}
+          onChange={(e) => {
+            입력값변경(e.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            let newArr = [{ 글: 입력값, 따봉: 0 }].concat([...글제목]);
+            글제목변경(newArr);
+            입력값변경("");
+          }}
+        >
+          저장
+        </button>
+      </div>
+
       <button
         onClick={() => {
           modal변경(!modal);
