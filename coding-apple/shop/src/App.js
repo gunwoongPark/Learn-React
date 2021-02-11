@@ -3,22 +3,6 @@ import "./App.css";
 import { Navbar, Nav, NavDropdown, Button, Jumbotron } from "react-bootstrap";
 import Data from "./data.js";
 
-function Shoes({ shoes }) {
-  return (
-    <div className="col-md-4">
-      <img
-        src="https://codingapple1.github.io/shop/shoes1.jpg"
-        width="100%"
-        alt="shoe1"
-      />
-      <h4>{shoes.title}</h4>
-      <p>
-        {shoes.content} & {shoes.price}
-      </p>
-    </div>
-  );
-}
-
 function App() {
   let [shoes, shoes변경] = useState(Data);
 
@@ -59,11 +43,26 @@ function App() {
 
       <div className="container">
         <div className="row">
-          {shoes.map((el) => (
-            <Shoes shoes={el} />
-          ))}
+          {shoes.map((el, index) => {
+            return <Card shoes={shoes[index]} i={index} />;
+          })}
         </div>
       </div>
+    </div>
+  );
+}
+
+function Card(props) {
+  return (
+    <div className="col-md-4">
+      <img
+        src={`https://codingapple1.github.io/shop/shoes${props.i + 1}.jpg`}
+        width="100%"
+      />
+      <h4>{props.shoes.title}</h4>
+      <p>
+        {props.shoes.content} & {props.shoes.price}
+      </p>
     </div>
   );
 }
