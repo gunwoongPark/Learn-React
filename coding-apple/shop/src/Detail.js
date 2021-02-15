@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./Detail.scss";
@@ -13,6 +13,14 @@ let 제목 = styled.h4`
 `;
 
 function Detail(props) {
+  let [isShow, setIsShow] = useState(true);
+
+  useEffect(() => {
+    // let 타이머 = setTimeout(() => {
+    //   setIsShow(false);
+    // }, 2000);
+  });
+
   let { id } = useParams();
   let history = useHistory();
   let 찾은상품 = props.shoes.find((상품) => 상품.id == id);
@@ -23,9 +31,11 @@ function Detail(props) {
         <제목 className="red">Detail</제목>
       </박스>
 
-      <div className="my-alert2">
-        <p>재고가 얼마 남지 않았습니다</p>
-      </div>
+      {isShow ? (
+        <div className="my-alert2">
+          <p>재고가 얼마 남지 않았습니다</p>
+        </div>
+      ) : null}
 
       <div className="row">
         <div className="col-md-6">
