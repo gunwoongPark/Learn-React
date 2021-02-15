@@ -13,13 +13,17 @@ let 제목 = styled.h4`
 `;
 
 function Detail(props) {
-  let [isShow, setIsShow] = useState(true);
+  let [alert, alert변경] = useState(true);
+  let [inputData, inputData변경] = useState("");
 
   useEffect(() => {
-    // let 타이머 = setTimeout(() => {
-    //   setIsShow(false);
-    // }, 2000);
-  });
+    let 타이머 = setTimeout(() => {
+      alert변경(false);
+    }, 2000);
+    return () => {
+      clearTimeout(타이머);
+    };
+  }, []);
 
   let { id } = useParams();
   let history = useHistory();
@@ -31,7 +35,10 @@ function Detail(props) {
         <제목 className="red">Detail</제목>
       </박스>
 
-      {isShow ? (
+      {inputData}
+      <input onChange={(e) => inputData변경(e.target.value)} />
+
+      {alert ? (
         <div className="my-alert2">
           <p>재고가 얼마 남지 않았습니다</p>
         </div>
