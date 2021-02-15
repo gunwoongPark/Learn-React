@@ -63,8 +63,7 @@ function App() {
               axios
                 .get("https://codingapple1.github.io/shop/data2.json")
                 .then((result) => {
-                  console.log(result.data);
-                  shoes변경(shoes.concat(result.data));
+                  shoes변경([...shoes, ...result.data]);
                 })
                 .catch(() => {
                   console.log("실패했어요");
