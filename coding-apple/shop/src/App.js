@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
 import { Navbar, Nav, NavDropdown, Button, Jumbotron } from "react-bootstrap";
 import Data from "./data.js";
 import { Link, Route, Switch } from "react-router-dom";
 import Detail from "./Detail.js";
 import axios from "axios";
+
+export let 재고context = React.createContext();
 
 function App() {
   let [shoes, shoes변경] = useState(Data);
@@ -52,11 +54,13 @@ function App() {
           </Jumbotron>
 
           <div className="container">
-            <div className="row">
-              {shoes.map((el, index) => {
-                return <Card shoes={shoes[index]} i={index} key={index} />;
-              })}
-            </div>
+            <재고context.Provider value={재고}>
+              <div className="row">
+                {shoes.map((el, index) => {
+                  return <Card shoes={shoes[index]} i={index} key={index} />;
+                })}
+              </div>
+            </재고context.Provider>
           </div>
           <button
             className="btn btn-primary"
@@ -76,7 +80,9 @@ function App() {
         </Route>
 
         <Route path="/detail/:id">
-          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+          <재고context.Provider value={재고}>
+            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+          </재고context.Provider>
         </Route>
 
         <Route path="/:id">
@@ -88,6 +94,7 @@ function App() {
 }
 
 function Card(props) {
+  let 재고 = useContext(재고context);
   return (
     <div className="col-md-4">
       <img
@@ -98,8 +105,14 @@ function Card(props) {
       <p>
         {props.shoes.content} & {props.shoes.price}
       </p>
+      <Test></Test>
     </div>
   );
+}
+
+function Test() {
+  let 재고 = useContext(재고context);
+  return <p>{재고[0]}</p>;
 }
 
 export default App;
