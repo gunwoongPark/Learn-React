@@ -1,7 +1,16 @@
-$메인칼라: #ff0000;
+$메인칼라: black;
+
+.wow-enter {
+  opacity: 0;
+}
+
+.wow-enter-active {
+  opacity: 1;
+  transition: all 500ms;
+}
 
 .red {
-  // color: $메인칼라;
+  color: $메인칼라;
 }
 
 @mixin 함수() {
