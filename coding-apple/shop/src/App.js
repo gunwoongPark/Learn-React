@@ -5,6 +5,7 @@ import Data from "./data.js";
 import { Link, Route, Switch } from "react-router-dom";
 import Detail from "./Detail.js";
 import axios from "axios";
+import Cart from "./Cart.js";
 
 export let 재고context = React.createContext();
 
@@ -85,6 +86,10 @@ function App() {
           </재고context.Provider>
         </Route>
 
+        <Route path="/cart">
+          <Cart></Cart>
+        </Route>
+
         <Route path="/:id">
           <div>아무거나적었을때 이거 보여주셈</div>
         </Route>
@@ -94,7 +99,6 @@ function App() {
 }
 
 function Card(props) {
-  let 재고 = useContext(재고context);
   return (
     <div className="col-md-4">
       <img
