@@ -24,14 +24,14 @@ function Cart(props) {
                 <td>
                   <button
                     onClick={() => {
-                      props.dispatch({ type: "수량증가", index: i });
+                      props.dispatch({ type: "수량증가", index: a.id });
                     }}
                   >
                     +
                   </button>
                   <button
                     onClick={() => {
-                      props.dispatch({ type: "수량감소", index: i });
+                      props.dispatch({ type: "수량감소", index: a.id });
                     }}
                   >
                     -

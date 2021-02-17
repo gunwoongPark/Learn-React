@@ -72,7 +72,7 @@ function Detail(props) {
               props.재고변경([9, 11, 12]);
               props.dispatch({
                 type: "항목추가",
-                payload: { id: 2, name: "새로운상품", quan: 1 },
+                payload: { id: 찾은상품.id, name: 찾은상품.title, quan: 1 },
               });
               history.push("/cart");
             }}
