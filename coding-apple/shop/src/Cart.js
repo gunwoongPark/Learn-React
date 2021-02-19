@@ -3,6 +3,10 @@ import { Table } from "react-bootstrap";
 import { connect } from "react-redux";
 
 function Cart(props) {
+  function 버튼누르면() {
+    props.dispatch({ type: "alert닫기" });
+  }
+
   return (
     <div>
       <Table responsive>
@@ -45,13 +49,7 @@ function Cart(props) {
       {props.alert열렸니 ? (
         <div className="my-alert2">
           <p>지금 구매하시면 신규할인 20%</p>
-          <button
-            onClick={() => {
-              props.dispatch({ type: "alert닫기" });
-            }}
-          >
-            닫기
-          </button>
+          <button onClick={버튼누르면}>닫기</button>
         </div>
       ) : null}
     </div>
