@@ -109,7 +109,7 @@ function Card(props) {
     >
       <img
         src={`https://codingapple1.github.io/shop/shoes${
-          props.i + props.shoes.id
+          1 + props.shoes.id
         }.jpg`}
         width="100%"
       />
