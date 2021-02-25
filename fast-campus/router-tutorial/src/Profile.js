@@ -1,4 +1,5 @@
 import React from "react";
+import WithRouterSample from "./WithRouterSample";
 
 const profileData = {
   gunwoong: {
@@ -26,6 +27,7 @@ function Profile({ match }) {
         {username} ({profile.name})
       </h3>
       <p>{profile.description}</p>
+      <WithRouterSample />
     </div>
   );
 }
