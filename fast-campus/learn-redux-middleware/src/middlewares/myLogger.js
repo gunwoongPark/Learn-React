@@ -5,5 +5,5 @@ const myLogger = (store) => (next) => (action) => {
   console.log("\tNext: ", store.getState());
   return result;
 };
- 
+
 export default myLogger;
