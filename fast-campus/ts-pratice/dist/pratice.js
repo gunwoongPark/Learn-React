@@ -1,11 +1,23 @@
 "use strict";
-let count = 0;
-count += 1;
-const message = 'hello world';
-const done = false;
-const numbers = [1, 2, 3];
-const messages = ['hello', 'world'];
-let mightBeUndefined = undefined;
-let nullableNumber = null;
-let color = 'red';
-color = 'yellow';
+class Circle {
+    constructor(radius) {
+        this.radius = radius;
+    }
+    getArea() {
+        return this.radius * this.radius * Math.PI;
+    }
+}
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+    }
+    getArea() {
+        return this.width * this.height;
+    }
+}
+const circle = new Circle(5);
+const rectangle = new Rectangle(2, 5);
+const shapes = [circle, rectangle];
+shapes.forEach(shape => {
+    console.log(shape.getArea());
+});
