@@ -1,24 +1,26 @@
-type Person = {
-    name: string;
-    age?: number;
+class Queue<T> {
+    list: T[] = [];
+
+    get length() {
+        return this.list.length;
+    }
+
+    enqueue(item: T) {
+        this.list.push(item);
+    }
+
+    dequeue() {
+        return this.list.shift();
+    }
 }
 
-type Developer = Person & {
-    skills: string[];
+const queue = new Queue<number>();
+queue.enqueue(0);
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
+
+while (queue.length > 0) {
+    console.log(queue.dequeue());
 }
-
-const person: Person = {
-    name: '김사람',
-    age: 20,
-}
-
-const expert: Developer = {
-    name: '김개발',
-    skills: ['javascript', 'react', 'typescript']
-}
-
-type People = Person[];
-const people: People = [person, expert];
-
-type Color = 'red' | 'orange' | 'yellow';
-const color: Color = 'orange';
