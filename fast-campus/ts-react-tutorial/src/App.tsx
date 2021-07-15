@@ -2,11 +2,11 @@ import React from 'react';
 import Greetings from './Greetings';
 
 const App: React.FC = () => {
-  const onClick = (name: string) => {
+  const onClick = (name:string)=>{
     console.log(name);
   }
   return (
-    <Greetings name="리액트" onClick={onClick} />
+    <Greetings name="리액트" onClick={onClick}/>
   );
 }
 
